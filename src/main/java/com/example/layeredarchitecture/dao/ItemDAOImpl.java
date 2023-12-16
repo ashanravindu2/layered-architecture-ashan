@@ -41,4 +41,24 @@ public boolean saveItem(ItemDTO itemDTO) throws SQLException, ClassNotFoundExcep
     pstm.setInt(4, itemDTO.getQtyOnHand());
     return pstm.executeUpdate() > 0;
 }
+public void itemUpdate(ItemDTO itemDTO) throws SQLException, ClassNotFoundException {
+    Connection connection = DBConnection.getDbConnection().getConnection();
+    PreparedStatement pstm = connection.prepareStatement("UPDATE Item SET description=?, unitPrice=?, qtyOnHand=? WHERE code=?");
+    pstm.setString(1, itemDTO.getDescription());
+    pstm.setBigDecimal(2, itemDTO.getUnitPrice());
+    pstm.setInt(3, itemDTO.getQtyOnHand());
+    pstm.setString(4, itemDTO.getCode());
+    pstm.executeUpdate();
+}
+public boolean existsItem(String code) throws SQLException, ClassNotFoundException {
+    Connection connection = DBConnection.getDbConnection().getConnection();
+    PreparedStatement pstm = connection.prepareStatement("SELECT code FROM Item WHERE code=?");
+    pstm.setString(1, code);
+    return pstm.executeQuery().next();
+}
+public ResultSet itemCodeGenerate() throws SQLException, ClassNotFoundException {
+    Connection connection = DBConnection.getDbConnection().getConnection();
+    ResultSet rst = connection.createStatement().executeQuery("SELECT code FROM Item ORDER BY code DESC LIMIT 1;");
+    return rst;
+}
 }
