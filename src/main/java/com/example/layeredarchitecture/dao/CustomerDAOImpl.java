@@ -62,4 +62,13 @@ public class CustomerDAOImpl {
         ResultSet rst = connection.createStatement().executeQuery("SELECT id FROM Customer ORDER BY id DESC LIMIT 1;");
         return rst;
     }
+    public String searchCustomer(String id) throws SQLException, ClassNotFoundException {
+        Connection connection = DBConnection.getDbConnection().getConnection();
+        PreparedStatement pstm = connection.prepareStatement("SELECT name FROM Customer WHERE id=?");
+        pstm.setString(1, id + "");
+        ResultSet rst = pstm.executeQuery();
+        rst.next();
+        String isname = rst.getString("name");
+        return isname;
+    }
 }
