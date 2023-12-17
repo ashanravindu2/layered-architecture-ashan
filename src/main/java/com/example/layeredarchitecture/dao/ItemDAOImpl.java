@@ -51,8 +51,8 @@ public boolean itemUpdate(ItemDTO itemDTO) throws SQLException, ClassNotFoundExc
     pstm.setBigDecimal(2, itemDTO.getUnitPrice());
     pstm.setInt(3, itemDTO.getQtyOnHand());
     pstm.setString(4, itemDTO.getCode());
-    pstm.executeUpdate();
-        return false;
+    return pstm.executeUpdate() > 0;
+
     }
     @Override
 public boolean existsItem(String code) throws SQLException, ClassNotFoundException {
@@ -74,7 +74,7 @@ public ItemDTO searchItem(String newItemCode) throws SQLException, ClassNotFound
     pstm.setString(1, newItemCode + "");
     ResultSet rst = pstm.executeQuery();
     rst.next();
-    ItemDTO item = new ItemDTO(newItemCode + "", rst.getString("description"), rst.getBigDecimal("unitPrice"), rst.getInt("qtyOnHand"));
-    return item;
+        ItemDTO item = new ItemDTO(newItemCode + "", rst.getString("description"), rst.getBigDecimal("unitPrice"), rst.getInt("qtyOnHand"));
+        return item;
 }
 }

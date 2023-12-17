@@ -1,6 +1,6 @@
 package com.example.layeredarchitecture.dao;
 
-import com.example.layeredarchitecture.db.DBConnection;
+
 import com.example.layeredarchitecture.model.OrderDetailDTO;
 import com.example.layeredarchitecture.util.TransactionConnection;
 import java.sql.Connection;
@@ -13,7 +13,7 @@ public class OrderDetailImpl implements OrderDetailDAO {
     @Override
     public boolean save(String orderId, OrderDetailDTO detail) throws SQLException, ClassNotFoundException {
 
-        Connection connection = DBConnection.getDbConnection().getConnection();
+        Connection connection = TransactionConnection.getConnection();
 
         PreparedStatement stm = connection.prepareStatement("INSERT INTO OrderDetails (oid, itemCode, unitPrice, qty) VALUES (?,?,?,?)");
 
