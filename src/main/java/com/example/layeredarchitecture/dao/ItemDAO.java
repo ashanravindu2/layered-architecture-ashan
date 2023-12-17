@@ -1,6 +1,5 @@
 package com.example.layeredarchitecture.dao;
 
-import com.example.layeredarchitecture.db.DBConnection;
 import com.example.layeredarchitecture.model.ItemDTO;
 
 import java.sql.*;
@@ -13,7 +12,7 @@ public interface ItemDAO {
 
     boolean saveItem(ItemDTO itemDTO) throws SQLException, ClassNotFoundException;
 
-    void itemUpdate(ItemDTO itemDTO) throws SQLException, ClassNotFoundException;
+    boolean itemUpdate(ItemDTO itemDTO) throws SQLException, ClassNotFoundException;
 
     boolean existsItem(String code) throws SQLException, ClassNotFoundException ;
 
