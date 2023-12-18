@@ -1,6 +1,7 @@
-package com.example.layeredarchitecture.dao;
+package com.example.layeredarchitecture.dao.custom.impl;
 
 
+import com.example.layeredarchitecture.dao.custom.OrderDetailDAO;
 import com.example.layeredarchitecture.model.OrderDetailDTO;
 import com.example.layeredarchitecture.util.TransactionConnection;
 import java.sql.Connection;
@@ -11,7 +12,7 @@ import java.sql.SQLException;
 public class OrderDetailImpl implements OrderDetailDAO {
 
     @Override
-    public boolean save(String orderId, OrderDetailDTO detail) throws SQLException, ClassNotFoundException {
+    public boolean saves(String orderId, OrderDetailDTO detail) throws SQLException, ClassNotFoundException {
 
         Connection connection = TransactionConnection.getConnection();
 
