@@ -309,7 +309,7 @@ public class PlaceOrderFormController {
     }
 
     public boolean saveOrder(String orderId, LocalDate orderDate, String customerId, List<OrderDetailDTO> orderDetails) throws SQLException, ClassNotFoundException {
-        boolean isOrderSaved;
+        boolean isOrderSaved = false;
         boolean isOrderDetailSaved = false;
         boolean isItemUpdated = false;
 
@@ -321,7 +321,6 @@ public class PlaceOrderFormController {
             for (OrderDetailDTO detail : orderDetails) {
                 isOrderDetailSaved = orderDetailimpl.save(orderId, detail);
 
-//                //Search & Update Item
                 ItemDTO item = findItem(detail.getItemCode());
                 item.setQtyOnHand(item.getQtyOnHand() - detail.getQty());
 

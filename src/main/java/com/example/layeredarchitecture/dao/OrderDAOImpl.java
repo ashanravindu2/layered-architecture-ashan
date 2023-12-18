@@ -10,9 +10,10 @@ public class OrderDAOImpl implements OrderDAO {
 
     @Override
     public ResultSet generateNewOrderId() throws SQLException, ClassNotFoundException {
-        Connection connection = DBConnection.getDbConnection().getConnection();
-        Statement stm = connection.createStatement();
-        return stm.executeQuery("SELECT oid FROM `Orders` ORDER BY oid DESC LIMIT 1;");
+//        Connection connection = DBConnection.getDbConnection().getConnection();
+//        Statement stm = connection.createStatement();
+//        return stm.executeQuery("SELECT oid FROM `Orders` ORDER BY oid DESC LIMIT 1;");
+        return SQLUtil.execute("SELECT oid FROM `Orders` ORDER BY oid DESC LIMIT 1;");
     }
     //transacion
 
@@ -22,20 +23,23 @@ public class OrderDAOImpl implements OrderDAO {
 
         PreparedStatement stm = connection.prepareStatement("SELECT oid FROM `Orders` WHERE oid=?");
         stm.setString(1, orderId);
+
+        SQLUtil.execute("SELECT oid FROM `Orders` WHERE oid=?",orderId);
         /*if order id already exist*/
         if (stm.executeQuery().next()) {
 
         }
     }
     @Override
-    public boolean saveOrder(String orderId, LocalDate orderDate, String customerId) throws SQLException {
+    public boolean saveOrder(String orderId, LocalDate orderDate, String customerId) throws SQLException, ClassNotFoundException {
 
-        Connection connection = TransactionConnection.setAutoCommitFalse();
+       Connection connection =TransactionConnection.setAutoCommitFalse();
 
-        PreparedStatement stm = connection.prepareStatement("INSERT INTO `Orders` (oid, date, customerID) VALUES (?,?,?)");
-        stm.setString(1, orderId);
-        stm.setDate(2, Date.valueOf(orderDate));
-        stm.setString(3, customerId);
+       PreparedStatement stm = connection.prepareStatement("INSERT INTO `Orders` (oid, date, customerID) VALUES (?,?,?)");
+      stm.setString(1, orderId);
+      stm.setDate(2, Date.valueOf(orderDate));
+       stm.setString(3, customerId);
+
 
         if (stm.executeUpdate() != 1) {
             connection.rollback();
