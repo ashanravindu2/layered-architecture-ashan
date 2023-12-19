@@ -1,5 +1,6 @@
 package com.example.layeredarchitecture.controller;
 
+import com.example.layeredarchitecture.dao.custom.impl.QueryImpl;
 import javafx.animation.FadeTransition;
 import javafx.animation.ScaleTransition;
 import javafx.animation.TranslateTransition;
@@ -18,6 +19,7 @@ import javafx.util.Duration;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 
@@ -36,6 +38,8 @@ public class MainFormController {
     private Label lblMenu;
     @FXML
     private Label lblDescription;
+
+    QueryImpl query = new QueryImpl();
 
 
     /**
@@ -103,7 +107,7 @@ public class MainFormController {
 
 
     @FXML
-    private void navigate(MouseEvent event) throws IOException {
+    private void navigate(MouseEvent event) throws IOException, SQLException, ClassNotFoundException {
         if (event.getSource() instanceof ImageView) {
             ImageView icon = (ImageView) event.getSource();
 
@@ -120,7 +124,8 @@ public class MainFormController {
                     root = FXMLLoader.load(this.getClass().getResource("/com/example/layeredarchitecture/place-order-form.fxml"));
                     break;
                 case "imgViewOrders":
-                    root = null;
+                    query.orderDetail();
+                   // root = null;
                     break;
             }
 
