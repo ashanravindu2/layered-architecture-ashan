@@ -11,12 +11,13 @@ public class QueryImpl implements QueryDAO {
 
     @Override
     public void orderDetail() throws SQLException, ClassNotFoundException {
+        System.out.println("OrderDetail\n");
+
         ResultSet rst = SQLUtil.execute("SELECT\n" +
                 "    Orders.oid,\n" +
                 "    Orders.date,\n" +
                 "    Customer.id AS customerID,\n" +
                 "    Customer.name AS customerName,\n" +
-                "    Customer.address AS customerAddress,\n" +
                 "    OrderDetails.itemCode,\n" +
                 "    Item.description AS itemDescription,\n" +
                 "    OrderDetails.qty,\n" +
@@ -36,13 +37,12 @@ public class QueryImpl implements QueryDAO {
             System.out.println("ORDER DATE : "+rst.getString("date"));
             System.out.println("CUSTOMER ID ; "+rst.getString("customerID"));
             System.out.println("CUSTOMER NAME : "+rst.getString("customerName"));
-            System.out.println("CUSTOMER ADDRESS : "+rst.getString("customerAddress"));
             System.out.println("ITEM CODE "+rst.getString("itemCode"));
             System.out.println("ITEM DESCRIPTION : "+rst.getString("itemDescription"));
             System.out.println("QTY : "+rst.getString("qty"));
             System.out.println("ORDER TOTAL PRICE : "+rst.getString("orderDetailUnitPrice"));
-            System.out.println("ITEM UNIT PRICE : "+rst.getString("itemUnitPrice"));
-            System.out.println();
+            System.out.println("ITEM UNIT PRICE : "+rst.getString("itemUnitPrice")+"\n");
+
         }
     }
 }
