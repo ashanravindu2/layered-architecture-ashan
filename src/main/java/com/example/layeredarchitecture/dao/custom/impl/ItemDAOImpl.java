@@ -28,13 +28,14 @@ public  class ItemDAOImpl implements ItemDAO {
         return allItems;
     }
     @Override
-public void delete(String code) throws SQLException, ClassNotFoundException {
+public boolean delete(String code) throws SQLException, ClassNotFoundException {
 //    Connection connection = DBConnection.getDbConnection().getConnection();
 //    PreparedStatement pstm = connection.prepareStatement("DELETE FROM Item WHERE code=?");
 //    pstm.setString(1, code);
 //    pstm.executeUpdate();
         SQLUtil.execute("DELETE FROM Item WHERE code=?",code);
-}
+        return false;
+    }
     @Override
 public boolean save(ItemDTO itemDTO) throws SQLException, ClassNotFoundException {
 //    Connection connection = DBConnection.getDbConnection().getConnection();

@@ -1,6 +1,7 @@
 package com.example.layeredarchitecture.controller;
 
-import com.example.layeredarchitecture.dao.custom.impl.ItemDAOImpl;
+import com.example.layeredarchitecture.bo.ItemBOImpl;
+import com.example.layeredarchitecture.bo.ItemBO;
 import com.example.layeredarchitecture.model.ItemDTO;
 import com.example.layeredarchitecture.view.tdm.ItemTM;
 import com.jfoenix.controls.JFXButton;
@@ -35,7 +36,8 @@ public class ManageItemsFormController {
     public TableView<ItemTM> tblItems;
     public TextField txtUnitPrice;
     public JFXButton btnAddNewItem;
-    ItemDAOImpl itemDAO = new ItemDAOImpl();
+   // ItemDAOImpl itemDAO = new ItemDAOImpl();
+    ItemBO itemBO = new ItemBOImpl();
 
     public void initialize() {
         tblItems.getColumns().get(0).setCellValueFactory(new PropertyValueFactory<>("code"));
@@ -71,7 +73,7 @@ public class ManageItemsFormController {
         tblItems.getItems().clear();
         try {
             /*Get all items*/
-            ArrayList<ItemDTO> allItem = itemDAO.getAll();
+            ArrayList<ItemDTO> allItem = itemBO.getAllItem();
             for (ItemDTO dto:allItem) {
                 tblItems.getItems().add(
                         new ItemTM(
@@ -136,7 +138,7 @@ public class ManageItemsFormController {
                 new Alert(Alert.AlertType.ERROR, "There is no such item associated with the id " + code).show();
             }
 
-            itemDAO.delete(code);
+            itemBO.itemDelete(code);
 
             tblItems.getItems().remove(tblItems.getSelectionModel().getSelectedItem());
             tblItems.getSelectionModel().clearSelection();
@@ -176,7 +178,7 @@ public class ManageItemsFormController {
                     new Alert(Alert.AlertType.ERROR, code + " already exists").show();
                 }
                 //Save Item
-                boolean isSaved  = itemDAO.save(new ItemDTO(code,description,unitPrice,qtyOnHand));
+                boolean isSaved  = itemBO.saveItem(new ItemDTO(code,description,unitPrice,qtyOnHand));
 
                 if (isSaved) {
                     tblItems.getItems().add(new ItemTM(code, description, unitPrice, qtyOnHand));
@@ -194,7 +196,7 @@ public class ManageItemsFormController {
                 }
                 /*Update Item*/
 
-               itemDAO.update(new ItemDTO(code,description,unitPrice,qtyOnHand));
+               itemBO.itemUpdate(new ItemDTO(code,description,unitPrice,qtyOnHand));
 
                 ItemTM selectedItem = tblItems.getSelectionModel().getSelectedItem();
                 selectedItem.setDescription(description);
@@ -213,13 +215,13 @@ public class ManageItemsFormController {
 
 
     private boolean existItem(String code) throws SQLException, ClassNotFoundException {
-        return itemDAO.exist(code);
+        return itemBO.existsItem(code);
     }
 
 
     private String generateNewId() {
         try {
-          ResultSet rst = itemDAO.idGenerate();
+          ResultSet rst = itemBO.itemCodeGenerate();
             if (rst.next()) {
                 String id = rst.getString("code");
                 int newItemId = Integer.parseInt(id.replace("I00-", "")) + 1;

@@ -16,6 +16,5 @@ public interface ItemDAO extends CrudDAO<ItemDTO> {
 //    boolean existsItem(String code) throws SQLException, ClassNotFoundException ;
 //
 //    ResultSet itemCodeGenerate() throws SQLException, ClassNotFoundException;
-//
-//    ItemDTO searchItem(String newItemCode) throws SQLException, ClassNotFoundException;
+
 }
