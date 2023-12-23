@@ -12,7 +12,7 @@ import java.util.List;
 
 public interface PlaceOrderBO {
      boolean placeOrder(String orderId, LocalDate orderDate, String customerId, List<OrderDetailDTO> orderDetails) throws SQLException, ClassNotFoundException;
-      ItemDTO findItem(String code);
+     ItemDTO findItem(String code)throws SQLException, ClassNotFoundException;
      CustomerDTO searchCustomer(String id) throws SQLException, ClassNotFoundException;
      ItemDTO searchItem(String id) throws SQLException, ClassNotFoundException;
      boolean existItem(String id) throws SQLException, ClassNotFoundException;

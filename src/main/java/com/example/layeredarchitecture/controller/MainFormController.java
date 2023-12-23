@@ -1,6 +1,6 @@
 package com.example.layeredarchitecture.controller;
 
-import com.example.layeredarchitecture.dao.custom.impl.QueryImpl;
+import com.example.layeredarchitecture.dao.custom.impl.QueryDAOImpl;
 import javafx.animation.FadeTransition;
 import javafx.animation.ScaleTransition;
 import javafx.animation.TranslateTransition;
@@ -39,7 +39,7 @@ public class MainFormController {
     @FXML
     private Label lblDescription;
 
-    QueryImpl query = new QueryImpl();
+    QueryDAOImpl query = new QueryDAOImpl();
 
 
     /**

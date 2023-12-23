@@ -2,12 +2,11 @@ package com.example.layeredarchitecture.dao.custom.impl;
 
 import com.example.layeredarchitecture.dao.SQLUtil;
 import com.example.layeredarchitecture.dao.custom.QueryDAO;
-import com.example.layeredarchitecture.model.OrderDTO;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class QueryImpl implements QueryDAO {
+public class QueryDAOImpl implements QueryDAO {
 
     @Override
     public void orderDetail() throws SQLException, ClassNotFoundException {

@@ -2,10 +2,6 @@ package com.example.layeredarchitecture.controller;
 
 import com.example.layeredarchitecture.bo.PlaceOrderBO;
 import com.example.layeredarchitecture.bo.PlaceOrderBOImpl;
-import com.example.layeredarchitecture.dao.custom.impl.CustomerDAOImpl;
-import com.example.layeredarchitecture.dao.custom.impl.ItemDAOImpl;
-import com.example.layeredarchitecture.dao.custom.impl.OrderDAOImpl;
-import com.example.layeredarchitecture.dao.custom.impl.OrderDetailImpl;
 import com.example.layeredarchitecture.model.CustomerDTO;
 import com.example.layeredarchitecture.model.ItemDTO;
 import com.example.layeredarchitecture.model.OrderDetailDTO;
@@ -24,7 +20,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import com.example.layeredarchitecture.util.TransactionConnection;
 
 import java.io.IOException;
 import java.math.BigDecimal;
@@ -32,7 +27,6 @@ import java.net.URL;
 import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 

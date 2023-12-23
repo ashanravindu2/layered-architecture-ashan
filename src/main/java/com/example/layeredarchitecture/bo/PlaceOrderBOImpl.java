@@ -5,7 +5,7 @@ import com.example.layeredarchitecture.dao.custom.CustomerDAO;
 import com.example.layeredarchitecture.dao.custom.impl.CustomerDAOImpl;
 import com.example.layeredarchitecture.dao.custom.impl.ItemDAOImpl;
 import com.example.layeredarchitecture.dao.custom.impl.OrderDAOImpl;
-import com.example.layeredarchitecture.dao.custom.impl.OrderDetailImpl;
+import com.example.layeredarchitecture.dao.custom.impl.OrderDetailDAOImpl;
 import com.example.layeredarchitecture.model.CustomerDTO;
 import com.example.layeredarchitecture.model.ItemDTO;
 import com.example.layeredarchitecture.model.OrderDetailDTO;
@@ -20,7 +20,7 @@ import java.util.List;
 public class PlaceOrderBOImpl implements PlaceOrderBO{
     ItemDAOImpl itemDAO = new ItemDAOImpl();
     OrderDAOImpl orderDAO = new OrderDAOImpl();
-    OrderDetailImpl orderDetailimpl = new OrderDetailImpl();
+    OrderDetailDAOImpl orderDetailimpl = new OrderDetailDAOImpl();
     CustomerDAO customerDAO = new CustomerDAOImpl();
 
     @Override

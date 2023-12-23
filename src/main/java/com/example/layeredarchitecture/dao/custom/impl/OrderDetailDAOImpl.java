@@ -6,10 +6,12 @@ import com.example.layeredarchitecture.model.OrderDetailDTO;
 import com.example.layeredarchitecture.util.TransactionConnection;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 
-public class OrderDetailImpl implements OrderDetailDAO {
+public class OrderDetailDAOImpl implements OrderDetailDAO {
 
     @Override
     public boolean saves(String orderId, OrderDetailDTO detail) throws SQLException, ClassNotFoundException {
@@ -31,4 +33,38 @@ public class OrderDetailImpl implements OrderDetailDAO {
         return true;
     }
 
+    @Override
+    public ArrayList<OrderDetailDTO> getAll() throws SQLException, ClassNotFoundException {
+        return null;
+    }
+
+    @Override
+    public boolean save(OrderDetailDTO dto) throws SQLException, ClassNotFoundException {
+        return false;
+    }
+
+    @Override
+    public boolean update(OrderDetailDTO dto) throws SQLException, ClassNotFoundException {
+        return false;
+    }
+
+    @Override
+    public boolean exist(String id) throws SQLException, ClassNotFoundException {
+        return false;
+    }
+
+    @Override
+    public boolean delete(String id) throws SQLException, ClassNotFoundException {
+        return false;
+    }
+
+    @Override
+    public ResultSet idGenerate() throws SQLException, ClassNotFoundException {
+        return null;
+    }
+
+    @Override
+    public OrderDetailDTO search(String id) throws SQLException, ClassNotFoundException {
+        return null;
+    }
 }
