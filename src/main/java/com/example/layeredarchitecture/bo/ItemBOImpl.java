@@ -1,5 +1,7 @@
 package com.example.layeredarchitecture.bo;
 
+import com.example.layeredarchitecture.dao.DAOFactory;
+import com.example.layeredarchitecture.dao.custom.CustomerDAO;
 import com.example.layeredarchitecture.dao.custom.ItemDAO;
 import com.example.layeredarchitecture.dao.custom.impl.ItemDAOImpl;
 import com.example.layeredarchitecture.model.ItemDTO;
@@ -9,7 +11,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class ItemBOImpl implements ItemBO {
-    ItemDAO itemDAO=new ItemDAOImpl();
+    ItemDAO itemDAO= (ItemDAO) DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOTypes.ITEM);
 
     //item business logic example
     @Override
